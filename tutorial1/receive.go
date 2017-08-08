@@ -45,6 +45,9 @@ func main() {
 	go func() {
 		for d := range msgs {
 			log.Printf("Recieved a message: %s", d.Body)
+			if string(d.Body) == "Stop" {
+				forever <- true
+			}
 		}
 	}()
 
